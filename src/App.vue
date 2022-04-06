@@ -1,7 +1,9 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/note">Afficher les notes</router-link> |
+    <router-link to="/addNote">Ajouter une note</router-link> |
+    <router-link to="/dashboard">Dashboard</router-link>
   </nav>
   <router-view />
 </template>
@@ -12,7 +14,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #b98742;
+}
+body {
+  background-color: black;
 }
 
 nav {
@@ -21,10 +26,10 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #b98742;
 }
 </style>
