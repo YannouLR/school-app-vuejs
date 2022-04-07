@@ -63,7 +63,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .nameProf {
   display: flex;
   flex-wrap: wrap;

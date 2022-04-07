@@ -63,7 +63,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .nameEleve {
   display: flex;
   flex-wrap: wrap;

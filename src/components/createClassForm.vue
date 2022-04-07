@@ -1,6 +1,7 @@
 <template>
   <div class="cont-dashboard">
     <form class="form">
+      <h3>Ajouter un élève</h3>
       <input
         type="text"
         v-model="user.firstname"
@@ -30,39 +31,17 @@
         <option value="3eme prof">3eme prof</option>
         <option value="4eme prof">4eme prof</option>
       </select>
-      <input type="submit" value="Ajouter" />
+      <input type="submit" value="Ajouter" class="ajouter" />
     </form>
     <div class="form-add-class">
       <form class="form-add">
+        <h3>Résumer de la classe</h3>
         <div>
           <h4>classe de : {{}}</h4>
           <h4>nom du professeur : {{}}</h4>
           <h4>
             nom des élèves :
             <ul>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
-              <li>Firstname {{}} | Lastname {{}}</li>
               <li>Firstname {{}} | Lastname {{}}</li>
             </ul>
           </h4>
@@ -108,9 +87,13 @@ export default {
   padding: auto;
   border-radius: 20px;
 }
+.ajouter {
+  width: 30%;
+}
 .form-add-class {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 50%;
   background-color: orange;
   border-radius: 20px;
@@ -118,7 +101,9 @@ export default {
 .form-add {
   display: flex;
   flex-direction: column;
+}
+.valider {
   margin: auto;
-  margin-bottom: 5%;
+  width: 30%;
 }
 </style>

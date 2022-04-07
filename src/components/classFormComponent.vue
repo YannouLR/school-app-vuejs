@@ -1,16 +1,16 @@
 <template>
   <div class="classe-list">
     <ul>
-      <li><router-link to="/allEleve">CP</router-link></li>
-      <li><router-link to="/allEleve">CM1</router-link></li>
-      <li><router-link to="/allEleve">CM2</router-link></li>
-      <li><router-link to="/allEleve">CE1</router-link></li>
-      <li><router-link to="/allEleve">CE2</router-link></li>
+      <li><router-link to="/classCP">CP</router-link></li>
+      <li><router-link to="/classCM1">CM1</router-link></li>
+      <li><router-link to="/classCM2">CM2</router-link></li>
+      <li><router-link to="/classCE1">CE1</router-link></li>
+      <li><router-link to="/classCE2">CE2</router-link></li>
     </ul>
   </div>
 </template>
 
-<style>
+<style scoped>
 .classe-list {
   display: flex;
   flex-direction: column;

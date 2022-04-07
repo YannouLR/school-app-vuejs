@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 form {
   background-color: rgb(224, 175, 62);
   height: 25rem;
