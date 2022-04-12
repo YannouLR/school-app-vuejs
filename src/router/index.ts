@@ -8,8 +8,8 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView,
   },
   {
-    path: "/note",
-    name: "Note",
+    path: "/student",
+    name: "note",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "about" */ "../views/NoteView.vue"),
   },
   {
-    path: "/addNote",
+    path: "/teacher",
     name: "addNote",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -26,7 +26,7 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "about" */ "../views/addNoteView.vue"),
   },
   {
-    path: "/dashboard",
+    path: "/admin",
     name: "Dashboard",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -53,7 +53,7 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "about" */ "../views/allStudentView.vue"),
   },
   {
-    path: "/showEleve",
+    path: "/showEleve/:id",
     name: "showEleve",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
