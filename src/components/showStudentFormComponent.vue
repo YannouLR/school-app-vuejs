@@ -1,6 +1,5 @@
 <template>
   <div class="body">
-    <div v-for="student in students" :key="student"></div>
     <h1>{{ students.firstname }} {{ students.lastname }}</h1>
     <div class="eleveId">
       <h3>
@@ -13,16 +12,29 @@
         Classe :
         <span v-if="students.Studyplace">{{ students.Studyplace.name }}</span>
       </h3>
-      <h3>Instituteur : <span>ici le nom de l'instituteur de l'élève</span></h3>
-      <h3 class="moyenne">
-        Moyenne :
-        <p>- Math : <span>.../20</span></p>
-        <p>- Français : <span>.../20</span></p>
-        <p>- Histoire : <span>.../20</span></p>
-        <p>- Science : <span>.../20</span></p>
-        <p>- Sport : <span>.../20</span></p>
+      <h3>
+        Instituteur :
+        <span v-if="students.Studyplace"
+          >{{ students.Studyplace.professor.firstname }}
+          {{ students.Studyplace.professor.lastname }}
+        </span>
       </h3>
-      <h3>Moyenne général : <span>0/20</span></h3>
+      <h3 class="moyenne">
+        <div>
+          Moyenne :
+          <p>
+            - Math : <span v-if="students.note">{{ students.note }}/20</span>
+          </p>
+        </div>
+      </h3>
+      <h3>
+        Moyenne général : <span>{{ students.noteMatiereStudents }}/20</span>
+      </h3>
+      <button>
+        <router-link :to="{ name: 'modifyEleve', params: { ids: students.id } }"
+          >Modifier l'élève</router-link
+        >
+      </button>
       <div class="form">
         <form>
           <h3 class="h3-exclure">Expulser</h3>
@@ -49,24 +61,35 @@
 <script setup>
 import { ref } from "vue";
 import { onMounted } from "@vue/runtime-core";
+import { useRoute } from "vue-router";
 
 const students = ref([]);
 onMounted(() => {
   fetchOneStudent();
 });
+const route = useRoute();
 async function fetchOneStudent() {
-  let response = await fetch("http://127.0.0.1:8001/api/students/3")
+  let response = await fetch(
+    `http://127.0.0.1:8001/api/students/${route.params.id}`
+  )
     .then((r) => r.json())
     .catch((e) => {
       console.log(e);
     });
   if (response.sexe === "boy") {
     response.sexe = "Homme";
-  } else {
+  } else if (response.sexe === "girl") {
     response.sexe = "Femme";
+  } else {
+    response.sexe = "Non-binaire";
   }
-  students.value = response;
+  if (response) {
+    students.value = response;
+  } else {
+    route.push("/allEleve");
+  }
   console.log("test", response);
+  console.log("test2", response.noteMatiereStudents);
 }
 </script>
 
