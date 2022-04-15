@@ -1,43 +1,14 @@
 <template>
   <div class="body">
-    <h1>{{ students.firstname }} {{ students.lastname }}</h1>
+    <h1>{{ prof.firstname }} {{ prof.lastname }}</h1>
     <div class="eleveId">
+      <h3>Age : {{ prof.age }}</h3>
+      <h3>Adresse email: {{ prof.email }}</h3>
+      <h3>Salaire : {{ prof.salary }} €</h3>
       <h3>
-        sexe : <span>{{ students.sexe }}</span>
+        Classe attribuée :
+        <span v-if="prof.studyplace">{{ prof.studyplace.name }}</span>
       </h3>
-      <h3>
-        Addresse email des parents : <span>{{ students.mail_parent }}</span>
-      </h3>
-      <h3>
-        Classe :
-        <span v-if="students.Studyplace">{{ students.Studyplace.name }}</span>
-      </h3>
-      <h3>
-        Instituteur :
-        <span v-if="students.Studyplace"
-          >{{ students.Studyplace.professor.firstname }}
-          {{ students.Studyplace.professor.lastname }}
-        </span>
-      </h3>
-      <h3 class="moyenne">
-        <div>
-          Moyenne :
-          <p>
-            - Math : <span v-if="students.note">{{ students.note }}/20</span>
-          </p>
-        </div>
-      </h3>
-      <h3>
-        Moyenne général :
-        <span v-if="students.noteMatiereStudents"
-          >{{ students.noteMatiereStudents.note }}/20</span
-        >
-      </h3>
-      <button>
-        <router-link :to="{ name: 'modifyEleve', params: { ids: students.id } }"
-          >Modifier l'élève</router-link
-        >
-      </button>
       <div class="form">
         <form>
           <h3 class="h3-exclure">Expulser</h3>
@@ -66,14 +37,14 @@ import { ref } from "vue";
 import { onMounted } from "@vue/runtime-core";
 import { useRoute } from "vue-router";
 
-const students = ref([]);
+const prof = ref([]);
 onMounted(() => {
   fetchOneStudent();
 });
 const route = useRoute();
 async function fetchOneStudent() {
   let response = await fetch(
-    `http://127.0.0.1:8001/api/students/${route.params.id}`,
+    `http://127.0.0.1:8001/api/professors/${route.params.id}`,
     {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -92,7 +63,7 @@ async function fetchOneStudent() {
     response.sexe = "Non-binaire";
   }
   if (response) {
-    students.value = response;
+    prof.value = response;
   } else {
     route.push("/allEleve");
   }

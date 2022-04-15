@@ -1,33 +1,60 @@
 <template>
-  <div class="classe-list">
-    <ul>
-      <li><router-link to="/classCP">CP</router-link></li>
-      <li><router-link to="/classCM1">CM1</router-link></li>
-      <li><router-link to="/classCM2">CM2</router-link></li>
-      <li><router-link to="/classCE1">CE1</router-link></li>
-      <li><router-link to="/classCE2">CE2</router-link></li>
-    </ul>
+  <div class="nameStudy">
+    <div v-for="studies in study" :key="studies">
+      <h3>
+        <li>
+          <router-link
+            :to="{ name: 'studentClass', params: { id: studies.id } }"
+            >{{ studies.name }}</router-link
+          >
+        </li>
+      </h3>
+    </div>
   </div>
 </template>
 
+<script setup>
+import { ref } from "vue";
+import { onMounted } from "@vue/runtime-core";
+
+const study = ref([]);
+onMounted(() => {
+  fetchStudents();
+});
+async function fetchStudents() {
+  let response = await fetch("http://127.0.0.1:8001/api/studies", {
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  })
+    .then((r) => r.json())
+    .catch((e) => {
+      console.log(e);
+    });
+  if (response["hydra:member"]) {
+    study.value = response["hydra:member"];
+    console.log("test", study.value);
+  }
+}
+</script>
+
 <style scoped>
-.classe-list {
+.nameStudy {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background-color: orange;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2%;
+  background-color: rgb(190, 138, 41);
   border-radius: 20px;
 }
-ul {
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
-  margin: auto;
-  margin-top: 3%;
-  margin-bottom: 3%;
+h3 a {
+  color: rgb(255, 255, 255);
 }
-ul a {
-  text-decoration: none;
-  color: rgb(0, 0, 0);
+h3 {
+  color: rgb(255, 255, 255);
+}
+h3 a.router-link-exact-active {
+  color: orange;
 }
 </style>

@@ -6,7 +6,7 @@
         type="text"
         name="lastname"
         id="lastname"
-        placeholder="{{response.lastname}}"
+        value="{{ students.lastname }}"
       />
       <select name="sexe" id="sexe">
         <option value="">Sexe de l'élève</option>
